@@ -3,7 +3,7 @@
 ## Location
 
 `C:\Users\mdhat\Desktop\openparldata-extract`  
-GitHub: _created on push — see below_
+GitHub: https://github.com/hatif03/openparldata-extract
 
 ## Two Hack Apertus apps
 
