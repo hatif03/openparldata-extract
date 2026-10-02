@@ -1,60 +1,26 @@
-# Hack Apertus — project template
+# OpenParlData Extract
 
-Template repository for [Hack Apertus](https://hackapertus.ch/) submissions.
-Every project keeps almost the same layout, so organizers and judges find the
-same things in the same place.
+**Track 2A — OpenParlData / BFH:** turn messy Swiss parliamentary affair PDFs into **one structured representation** aligned with [OpenParlData](https://openparldata.ch/home) and **eCH-0295**, using layout tools (Docling/Marker) plus **Apertus 1.5** for schema mapping.
 
-## Select your track
+- **Hackathon:** [Hack Apertus](https://hackapertus.ch/) online stage, 1–16 October 2026  
+- **Track:** [Track 2A — Academia](track_2a/README.md) · challenge **OpenParlData**  
+- **Sibling project:** [GemeindeSim](https://github.com/hatif03/gemeindesim) (Track 2B — own civic simulation)  
+- **Study notes:** `C:\Users\mdhat\Desktop\apertus\track-2a\openparldata\` on this machine  
 
-This repository holds one example project per track:
+## Layout
 
-- `track_1a/`
-- `track_1b/`
-- `track_2a/`
-- `track_2b/`
-
-Keep the directory for the track you are competing in **exactly as it is** —
-don't rename it or move its files — and delete the other track directories.
-That directory is your project root. Keep the files and directories as shown
-below.
-
-## The structure
-
-| Path | What it is |
+| Path | Purpose |
 | --- | --- |
-| `README.md` | The challenge description and submission requirements for your track |
-| `technical_report.md` | The deeper write-up: architecture, evaluation, limitations |
-| `Makefile` | `make run` must spin up your project |
-| `src/` | Your code |
-| `data/` | Datasets — `track_1a`, `track_2a` and `track_2b` only; max. 100 MB |
-| `findings/` | Issue files — `track_1a` only |
-| `docs/` | Diagrams, notes, longer write-ups |
+| `track_2a/` | **Submission root** (do not rename) |
+| `track_2a/src/` | Extraction pipeline code |
+| `track_2a/data/` | Sample PDFs / gold snippets (max. 100 MB) |
+| `track_2a/docs/` | Challenge brief, hackathon links, architecture |
 
-## Run it
-
-Judges run `make run` from the root of the project, on a clean checkout:
+## Quick start
 
 ```bash
+cp track_2a/.env.example track_2a/.env   # set LLM_API_KEY
 make run
 ```
 
-`make run` is expected to run the project using Docker, since that
-is how the judges will run it.
-- If you used other local open-weight models, include instructions for running the project in your technical report.
-- Use the following environment variables:
-```
-LLM_NAME — name and version of the model
-LLM_BASE_URL — endpoint base URL
-LLM_API_KEY — your API key
-```
-
-## Getting started
-
-1. Click **Use this template** to create your own repository.
-2. Delete the other track directories. Don't rename or restructure yours.
-3. Read its `README.md` and fill in `technical_report.md`.
-4. Make `make run` work from the root of the project, on a clean checkout.
-
-## License
-
-All Hack Apertus projects are open-sourced. Please check our Terms & Conditions for specific licensing details (6. What you build is open source): https://hackapertus.ch/terms-and-conditions
+See [SETUP.md](SETUP.md) and [track_2a/docs/HACKATHON.md](track_2a/docs/HACKATHON.md).

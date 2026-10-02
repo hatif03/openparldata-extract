@@ -1,62 +1,54 @@
-# Academia Challenges
+# OpenParlData — Extracting Parliamentary Affairs from PDFs
 
-Submissions must use the Apertus model family.
-For Track 2 this means that submitted solutions must be built with Apertus. Other open-weights models can be used to support development, e.g. as automatic judges during evaluation. Their role must be clearly described in the submission report.
+**Hack Apertus Track 2A** · Partner: **OpenParlData / BFH** · Christian Gutknecht (OpenParlData, Glue, eCH Political Affairs)
 
-💬 In case you have questions, join the conversation on Discord or send an email to “hello@hackapertus.ch”
+Swiss parliaments publish **affaires** (Vorstösse, Berichte, Beschlüsse) as inconsistent PDFs. This project extracts text and maps it into **one common structure** so it can join the [OpenParlData API](https://api.openparldata.ch/documentation) (~78 bodies today, incompatible layouts).
 
-## How it works
-Pick from 5 academia challenges provided by Swiss academic institutions:
+## Problem (two layers)
 
-- **FHGR:** AI-Powered Job Interview Coach
-- **OpenParlData:** Extracting Parliamentary Affairs from PDFs into One Common Structure
-- **OST:** Multilingual Natural Language Inference over Swiss Official Voting Booklets
-- **UZH:** Detecting Cross-Lingual Semantic Differences in Swiss Government Websites
-- **ZHAW:** See It, Say It, Pick It: Vision-Language Grounding for a Real Robot Arm
+1. **Layout / OCR** — reading order, tables, scans vs born-digital ([Docling](https://github.com/docling-project/docling), [Marker](https://github.com/VikParuchuri/marker), etc.)
+2. **Schema mapping** — title, body, dates, actors, Beschluss, language → **eCH-0295** / OpenParlData JSON
 
-The challenges incl. submission and judging criteria are described in our **Getting Started guide**:
-https://hackapertus.notion.site/getting-started-guide-onlinehack
+**Apertus 1.5:** long-context cleanup into valid JSON; optional **page images** for scans Docling misses. Do not invent fields outside the target schema.
+
+## Prototype target (16 days)
+
+- 5–10 real affair PDFs (OpenParlData doc links or cantonal sites)  
+- Docling or Marker → intermediate Markdown/JSON  
+- Apertus fills the target schema → validate against OpenAPI / eCH-0295  
+- Score **table/header fidelity**, not raw OCR alone  
 
 ## Run it
 
-Keep `track_2a/` as it is: don't rename it or move its files, just delete the
-other track directories.
-
-From the root of the project:
+Keep `track_2a/` unchanged (template rule). From **repository root**:
 
 ```bash
 make run
 ```
 
-Fill in the [Makefile](Makefile) so that it works on a clean checkout. It is
-expected to run the project in a Docker container, since that is how the judges
-will run it, without relying on anything already installed on your machine.
-
-Requirements: `runtime, hardware, API keys, model weights`
+Docker + `LLM_*` env vars (see `.env.example`). Stub until pipeline is implemented.
 
 ## Data
-The `data/` directory must not exceed 100 MB.
 
+`data/` ≤ **100 MB**. Store small samples + metadata; link to sources in the technical report.
 
-## 📦 Submission Requirements & Deliverables
-❗️ Submissions are not handled on Devpost. Submit through our website only:
-http://hackapertus.ch/online-hack/submissions
+## Submission
 
-Requirements differ by challenge. See the description of the challenge you are entering for the exact deliverables.
+| Item | Link |
+| --- | --- |
+| Form | http://hackapertus.ch/online-hack/submissions |
+| Challenge details | https://hackapertus.notion.site/getting-started-guide-onlinehack |
+| Judging | Per challenge in Notion (see `docs/HACKATHON.md`) |
 
+**Deadline:** 16 October 2026, 12:00 CEST.
 
-## ⚖️ Judging Criteria
-Judging criteria also differ by challenge. See the respective challenge description.
+## Docs in this repo
 
+- [docs/CHALLENGE.md](docs/CHALLENGE.md) — resources, learn path, Apertus angle  
+- [docs/HACKATHON.md](docs/HACKATHON.md) — deadlines, checklist  
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — pipeline sketch  
+- [technical_report.md](technical_report.md) — submission write-up  
 
 ## Support
 
-**Licensing requirements**
-Please check our Terms & Conditions (6. What you build is open source):
-https://hackapertus.ch/terms-and-conditions
-
-## FAQ
-💡 https://hackapertus.ch/faq
-
-## Contact
-💬 In case you have questions, join the conversation on Discord or send an email to “hello@hackapertus.ch”
+Discord: https://discord.gg/hack-apertus · hello@hackapertus.ch

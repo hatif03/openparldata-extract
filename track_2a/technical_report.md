@@ -1,17 +1,17 @@
-# Technical report — `project name`
+# Technical report — OpenParlData Extract
 
 A deeper write-up than the README: what you built, how it works, and what the
-numbers say. Also check the specific submission requirements for your Academia
-challenge and add required information here.
+numbers say. Also check the specific submission requirements for the **OpenParlData**
+challenge in the [getting-started guide](https://hackapertus.notion.site/getting-started-guide-onlinehack).
 
-- **Track:** `Track 2A — challenge name`
-- **Event:** Online
-- **Team:** `team name` — `member`, `member`, `member`
-- **Demo:** `link to video, deployment, or notebook`
+- **Track:** Track 2A — OpenParlData (parliamentary PDFs → one structure)
+- **Event:** Hack Apertus online stage, October 2026
+- **Team:** _TBD_
+- **Demo:** _TBD_
 
 ## 1. Summary
 
-The problem, your approach, and the headline result in one paragraph.
+_Swiss parliamentary affair PDFs are converted with a layout tool (Docling/Marker), then Apertus 1.5-70B maps the intermediate representation into schema-valid JSON aligned with eCH-0295 / OpenParlData. Headline metrics: TBD (field accuracy vs gold, table fidelity)._
 
 ## 2. Architecture
 
@@ -20,9 +20,10 @@ reference them here.
 
 ## 3. Use of Apertus
 
-- **Model:** `e.g. swiss-ai/Apertus-v1.5-8B`
-- **How it is used:** inference | fine-tuning | evaluation | red-teaming | agents / tool use
-- **Where it runs:** `local weights, hosted endpoint, ...`
+- **Model:** `apertus-v1.5-70b` on hackathon endpoint; weights `swiss-ai/Apertus-v1.5-70B`
+- **How it is used:** inference — structured JSON mapping from layout output; optional multimodal page images for failed OCR regions
+- **Where it runs:** `https://hackapertus.livemap.sh/v1` (demo); sovereign/on-prem vLLM for production story
+- **Not used for:** raw OCR of full scans when Docling/Marker suffices (per challenge design)
 
 Prompts, adapters, quantisation, serving stack — whatever a reader needs to
 rebuild your setup.
